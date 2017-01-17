@@ -7,9 +7,11 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('bantaba', ['ionic',
   'starter.controllers',
-  'starter.services'])
+  'starter.services',
+  'auth0.lock',
+  'angular-jwt'])
 
-  .run(function ($ionicPlatform) {
+  .run(function ($ionicPlatform, $rootScope: angular.IRootScopeService, authService) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -22,10 +24,20 @@ angular.module('bantaba', ['ionic',
         // org.apache.cordova.statusbar required
         window['StatusBar'].styleDefault();
       }
+
+      // Register the authentication listener that is
+      // set up in auth.service.js
+      authService.registerAuthenticationListener();
+
+      //This event gets triggered on URL change
+      $rootScope.$on('$locationChangeStart', authService.checkAuthOnRefresh);
     });
+
+    // Check is the user authenticated before Ionic platform is ready
+    authService.checkAuthOnRefresh();
   })
 
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, lockProvider, jwtOptionsProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
@@ -39,7 +51,7 @@ angular.module('bantaba', ['ionic',
         abstract: true,
         templateUrl: 'templates/tabs.html',
         resolve: {
-          auth: function() {
+          auth: function () {
             return true;
           }
         }
@@ -111,5 +123,29 @@ angular.module('bantaba', ['ionic',
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/dash');
+
+    lockProvider.init({
+      clientID: 'dBy2aMEHCXu82NMs0z4pGgO7zMN2APaD',
+      domain: 'simplre.auth0.com',
+      options: {
+        auth: {
+          redirect: false,
+          params: {
+            scope: 'openid',
+            device: 'Mobile device'
+          }
+        }
+      }
+    });
+
+    // Configuration for angular-jwt
+    jwtOptionsProvider.config({
+      tokenGetter: function () {
+        return localStorage.getItem('id_token');
+      },
+      whiteListedDomains: ['localhost'],
+      unauthenticatedRedirectPath: '/login'
+    });
+
 
   });

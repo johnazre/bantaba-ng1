@@ -6,8 +6,10 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('bantaba', ['ionic',
     'starter.controllers',
-    'starter.services'])
-    .run(function ($ionicPlatform) {
+    'starter.services',
+    'auth0.lock',
+    'angular-jwt'])
+    .run(function ($ionicPlatform, $rootScope, authService) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -15,13 +17,20 @@ angular.module('bantaba', ['ionic',
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             cordova.plugins.Keyboard.disableScroll(true);
         }
-        if (window.StatusBar) {
+        if (window['StatusBar']) {
             // org.apache.cordova.statusbar required
-            StatusBar.styleDefault();
+            window['StatusBar'].styleDefault();
         }
+        // Register the authentication listener that is
+        // set up in auth.service.js
+        authService.registerAuthenticationListener();
+        //This event gets triggered on URL change
+        $rootScope.$on('$locationChangeStart', authService.checkAuthOnRefresh);
     });
+    // Check is the user authenticated before Ionic platform is ready
+    authService.checkAuthOnRefresh();
 })
-    .config(function ($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, lockProvider, jwtOptionsProvider) {
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
     // Set up the various states which the app can be in.
@@ -77,7 +86,7 @@ angular.module('bantaba', ['ionic',
             }
         }
     })
-        .state('tab.admin', {
+        .state('tab.manage', {
         url: '/search',
         views: {
             'tab-search': {
@@ -89,4 +98,25 @@ angular.module('bantaba', ['ionic',
     });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/dash');
+    lockProvider.init({
+        clientID: 'dBy2aMEHCXu82NMs0z4pGgO7zMN2APaD',
+        domain: 'simplre.auth0.com',
+        options: {
+            auth: {
+                redirect: false,
+                params: {
+                    scope: 'openid',
+                    device: 'Mobile device'
+                }
+            }
+        }
+    });
+    // Configuration for angular-jwt
+    jwtOptionsProvider.config({
+        tokenGetter: function () {
+            return localStorage.getItem('id_token');
+        },
+        whiteListedDomains: ['localhost'],
+        unauthenticatedRedirectPath: '/login'
+    });
 });
