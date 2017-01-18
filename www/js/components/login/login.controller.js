@@ -1,31 +1,36 @@
-// namespace bantaba_app {
-//     'use strict';
-//     export class LoginController {
-//         static $inject: Array<string> = ['AuthService', '$scope'];
-//         constructor(private authService: AuthService, $scope: angular.IScope) {
-//             this.doLogin();
-//         }
-//         doLogin() {
-//             this.authService.login();
-//         }
-//     }
-//     angular
-//         .module('bantaba')
-//         .controller('LoginController', LoginController);
-// }
-(function () {
+var bantaba_app;
+(function (bantaba_app) {
     'use strict';
+    var LoginController = (function () {
+        function LoginController(authService, $scope) {
+            this.authService = authService;
+            this.doLogin();
+            $scope.$on("$ionicView.beforeEnter", function (event, data) {
+                authService.login();
+            });
+        }
+        LoginController.prototype.doLogin = function () {
+            this.authService.login();
+        };
+        return LoginController;
+    }());
+    LoginController.$inject = ['AuthService', '$scope'];
+    bantaba_app.LoginController = LoginController;
     angular
         .module('bantaba')
         .controller('LoginController', LoginController);
-    LoginController.$inject = ['AuthService', 'login', '$scope'];
-    function LoginController(AuthService, login, $scope) {
-        AuthService.login();
-        console.log('login', login);
-        $scope.$on("$ionicView.beforeEnter", function (event, data) {
-            // handle event
-            console.log("State Params: ", data.stateParams);
-            AuthService.login();
-        });
-    }
-})();
+})(bantaba_app || (bantaba_app = {}));
+// (function () {
+//     'use strict';
+//     angular
+//         .module('bantaba')
+//         .controller('LoginController', LoginController);
+//     LoginController.$inject = ['AuthService', 'login', '$scope'];
+//     function LoginController(AuthService, login, $scope) {
+//         AuthService.login();
+//         console.log('login', login)
+//         $scope.$on("$ionicView.beforeEnter", function (event, data) {
+//             AuthService.login();
+//         });
+//     }
+// })();
