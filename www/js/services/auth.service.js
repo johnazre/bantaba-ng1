@@ -2,9 +2,9 @@
     'use strict';
     angular
         .module('bantaba')
-        .service('authService', authService);
-    authService.$inject = ['$rootScope', 'lock', 'authManager', 'jwtHelper'];
-    function authService($rootScope, lock, authManager, jwtHelper) {
+        .service('AuthService', AuthService);
+    AuthService.$inject = ['$rootScope', 'lock', 'authManager', 'jwtHelper'];
+    function AuthService($rootScope, lock, authManager, jwtHelper) {
         var userProfile = JSON.parse(localStorage.getItem('profile')) || {};
         function login() {
             lock.show();

@@ -2,11 +2,16 @@ var bantaba_app;
 (function (bantaba_app) {
     'use strict';
     var AccountController = (function () {
-        function AccountController() {
+        function AccountController(authService) {
+            this.authService = authService;
+            this.doLogin();
         }
+        AccountController.prototype.doLogin = function () {
+            this.authService.login();
+        };
         return AccountController;
     }());
-    AccountController.$inject = [];
+    AccountController.$inject = ['AuthService'];
     bantaba_app.AccountController = AccountController;
     angular
         .module('bantaba')

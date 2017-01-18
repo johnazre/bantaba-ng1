@@ -3,8 +3,16 @@ namespace bantaba_app {
 
     export class AccountController {
         
-        static $inject: Array<string> = [];
-        constructor() {}
+        static $inject: Array<string> = ['AuthService'];
+        constructor(private authService: AuthService) {
+            this.doLogin();
+        }
+
+        doLogin() {
+            this.authService.login();
+        }
+
+    
     }
 
     angular

@@ -11,7 +11,7 @@ angular.module('bantaba', ['ionic',
   'auth0.lock',
   'angular-jwt'])
 
-  .run(function ($ionicPlatform, $rootScope: angular.IRootScopeService, authService) {
+  .run(function ($ionicPlatform, $rootScope: angular.IRootScopeService, AuthService) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -27,14 +27,14 @@ angular.module('bantaba', ['ionic',
 
       // Register the authentication listener that is
       // set up in auth.service.js
-      authService.registerAuthenticationListener();
+      AuthService.registerAuthenticationListener();
 
       //This event gets triggered on URL change
-      $rootScope.$on('$locationChangeStart', authService.checkAuthOnRefresh);
+      $rootScope.$on('$locationChangeStart', AuthService.checkAuthOnRefresh);
     });
 
     // Check is the user authenticated before Ionic platform is ready
-    authService.checkAuthOnRefresh();
+    AuthService.checkAuthOnRefresh();
   })
 
   .config(function ($stateProvider, $urlRouterProvider, lockProvider, jwtOptionsProvider) {
