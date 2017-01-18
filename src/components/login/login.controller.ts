@@ -2,7 +2,7 @@
 //     'use strict';
 
 //     export class LoginController {
-        
+
 //         static $inject: Array<string> = ['AuthService', '$scope'];
 //         constructor(private authService: AuthService, $scope: angular.IScope) {
 //             this.doLogin();
@@ -25,10 +25,16 @@
         .module('bantaba')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['AuthService', 'login'];
+    LoginController.$inject = ['AuthService', 'login', '$scope'];
 
-    function LoginController(AuthService, login) {
+    function LoginController(AuthService, login, $scope) {
         AuthService.login();
         console.log('login', login)
+
+        $scope.$on("$ionicView.beforeEnter", function (event, data) {
+            // handle event
+            console.log("State Params: ", data.stateParams);
+            AuthService.login();
+        });
     }
 })();

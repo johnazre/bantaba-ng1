@@ -18,9 +18,14 @@
     angular
         .module('bantaba')
         .controller('LoginController', LoginController);
-    LoginController.$inject = ['AuthService', 'login'];
-    function LoginController(AuthService, login) {
+    LoginController.$inject = ['AuthService', 'login', '$scope'];
+    function LoginController(AuthService, login, $scope) {
         AuthService.login();
         console.log('login', login);
+        $scope.$on("$ionicView.beforeEnter", function (event, data) {
+            // handle event
+            console.log("State Params: ", data.stateParams);
+            AuthService.login();
+        });
     }
 })();
