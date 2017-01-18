@@ -21,7 +21,7 @@ navigation history that also transitions its views in and out.
   </ion-tab>
 
   <!-- MyEvents Tab -->
-  <ion-tab title="My Events" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-search" href="#/tab/my-events">
+  <ion-tab ng-if="isAuthenticated" title="My Events" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-search" href="#/tab/my-events">
     <ion-nav-view name="tab-my-events"></ion-nav-view>
   </ion-tab>
 

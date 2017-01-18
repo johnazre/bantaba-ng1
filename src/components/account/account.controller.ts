@@ -5,11 +5,10 @@ namespace bantaba_app {
         
         static $inject: Array<string> = ['AuthService'];
         constructor(private authService: AuthService) {
-            this.doLogin();
         }
 
-        doLogin() {
-            this.authService.login();
+        logout() {
+            this.authService.logout();
         }
 
     

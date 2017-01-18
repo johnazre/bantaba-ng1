@@ -6,9 +6,9 @@
         .module('bantaba')
         .service('AuthService', AuthService);
 
-    AuthService.$inject = ['$rootScope', 'lock', 'authManager', 'jwtHelper'];
+    AuthService.$inject = ['$rootScope', 'lock', 'authManager', 'jwtHelper', '$state'];
 
-    function AuthService($rootScope, lock, authManager, jwtHelper) {
+    function AuthService($rootScope, lock, authManager, jwtHelper, $state) {
 
         var userProfile = JSON.parse(localStorage.getItem('profile')) || {};
 
@@ -23,6 +23,7 @@
             localStorage.removeItem('profile');
             authManager.unauthenticate();
             userProfile = {};
+            $state.go('login');
         }
 
         // Set up the logic for when a user authenticates
@@ -35,7 +36,7 @@
                 lock.hide();
 
                 // Redirect to default page
-                location.hash = '#/';
+                $state.go('tab.dash');
 
                 lock.getProfile(authResult.idToken, function (error, profile) {
                     if (error) {

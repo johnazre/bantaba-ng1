@@ -4,10 +4,9 @@ var bantaba_app;
     var AccountController = (function () {
         function AccountController(authService) {
             this.authService = authService;
-            this.doLogin();
         }
-        AccountController.prototype.doLogin = function () {
-            this.authService.login();
+        AccountController.prototype.logout = function () {
+            this.authService.logout();
         };
         return AccountController;
     }());

@@ -50,11 +50,7 @@ angular.module('bantaba', ['ionic',
         url: '/tab',
         abstract: true,
         templateUrl: 'templates/tabs.html',
-        resolve: {
-          auth: function () {
-            return true;
-          }
-        }
+        
       })
 
       // Each tab has its own nav history stack:
@@ -67,7 +63,14 @@ angular.module('bantaba', ['ionic',
             controller: 'DashboardController',
             controllerAs: 'vm'
           }
-        }
+        },
+        // resolve: {
+        //   auth: function ($rootScope) {
+        //     console.log($rootScope);
+            
+        //     return false;
+        //   }
+        // }
       })
 
       .state('tab.search', {
@@ -111,7 +114,7 @@ angular.module('bantaba', ['ionic',
         }
       })
       .state('tab.manage', {
-        url: '/search',
+        url: '/manage',
         views: {
           'tab-search': {
             templateUrl: 'templates/tab-search.html',
@@ -119,10 +122,21 @@ angular.module('bantaba', ['ionic',
             controllerAs: 'vm'
           }
         }
+      })
+      
+      .state('login', {
+        url: '/login',
+        templateUrl: 'templates/login.html',
+        controller: 'LoginController',
+        resolve: {
+          login: function($rootScope) {
+            return 'yes';
+          }
+        }
       });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/dash');
+    $urlRouterProvider.otherwise('/login');
 
     lockProvider.init({
       clientID: 'dBy2aMEHCXu82NMs0z4pGgO7zMN2APaD',
