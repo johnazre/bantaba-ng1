@@ -6,12 +6,13 @@ namespace bantaba_app {
         event: any;
         performers: Array<any> = [];
         performer: any;
+        searchFilters: string[] = ['Location', 'Performer'];
+        selectedOption: any;
         
         static $inject: Array<string> = ['EventsService', 'PerformersService', '$http'];
         constructor(private eventsService: EventsService,
                     private performersService: PerformersService,
                     private $http: angular.IHttpService) {
-            this.getAllEvents();
         }
 
         getAllEvents() {
@@ -28,6 +29,10 @@ namespace bantaba_app {
                     console.log('res: ', res.data)
                     this.performers = res.data;
                 });
+        }
+
+        searchFilterChange() {
+            console.log("select: ", this.selectedOption);
         }
     }
 

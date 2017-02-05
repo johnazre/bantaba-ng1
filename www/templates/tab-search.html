@@ -8,7 +8,7 @@
         <div class="input-label">
           Location or Performer
         </div>
-        <select>
+        <select ng-options="filter for filter in vm.searchFilter" ng-model="vm.selectedOption" ng-change="searchFilterChange()">
           <option>Location</option>
           <option>Performer</option>
         </select>

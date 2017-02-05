@@ -3,3 +3,7 @@
 .dash-heading {
     text-align: center;
 }
+
+.item.item-avatar.dash-event-heading {
+    background-color: #eaebed;
+}

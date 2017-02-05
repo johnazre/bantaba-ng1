@@ -8,7 +8,7 @@ var bantaba_app;
             this.$http = $http;
             this.events = [];
             this.performers = [];
-            this.getAllEvents();
+            this.searchFilters = ['Location', 'Performer'];
         }
         SearchController.prototype.getAllEvents = function () {
             var _this = this;
@@ -25,6 +25,9 @@ var bantaba_app;
                 console.log('res: ', res.data);
                 _this.performers = res.data;
             });
+        };
+        SearchController.prototype.searchFilterChange = function () {
+            console.log("select: ", this.selectedOption);
         };
         return SearchController;
     }());
