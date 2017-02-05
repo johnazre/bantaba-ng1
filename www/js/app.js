@@ -5,8 +5,8 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('bantaba', ['ionic',
-    'starter.controllers',
-    'starter.services',
+    // 'starter.controllers',
+    // 'starter.services',
     'auth0.lock',
     'angular-jwt'])
     .run(function ($ionicPlatform, $rootScope, AuthService) {

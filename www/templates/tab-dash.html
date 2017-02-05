@@ -2,15 +2,15 @@
   <ion-content class="padding">
     <h3 class="dash-heading">Welcome to Banataba, {{vm.user}} User!</h3>
     <div class="list card" ng-repeat="event in vm.events">
-      <div class="item item-avatar">
+      <div class="item item-avatar dash-event-heading">
         <!--<img src="mcfly.jpg">-->
-        <h2>{{event.performers}}</h2>
-        <p>{{event.start_date}} - {{event.end_date}}</p>
+        <h2>{{event.performers[0].stage_name}}</h2>
+        <p>{{event.start_date | date: 'shortTime'}} - {{event.end_date | date: 'shortTime'}}</p>
       </div>
       <div class="item item-body">
         <!--<img class="full-image" src="delorean.jpg">-->
         <p>
-          Performers: {{event.performers}}
+          Performers: {{event.performers[0].stage_name}}
         </p>
         <p>
           {{event.description}} This is a short description of the event.
