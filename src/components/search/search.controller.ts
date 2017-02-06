@@ -2,13 +2,14 @@ namespace bantaba_app {
     'use strict';
 
     export class SearchController {
-        events: Array<any> = [];
         event: any;
-        performers: Array<any> = [];
+        events: Array<any> = [];
         performer: any;
+        performers: Array<any> = [];
+        results: any[];
         searchFilters: string[] = ['Location', 'Performer'];
-        selectedOption: any;
         searchTerm: string;
+        selectedOption: any;
         
         static $inject: Array<string> = ['EventsService', 'PerformersService', '$http'];
         constructor(private eventsService: EventsService,
@@ -33,10 +34,11 @@ namespace bantaba_app {
         }
 
         searchFilter() {
-            console.log("select: ", this.selectedOption);
-            console.log("term: ", this.searchTerm);
             this.eventsService.queryEvents(this.selectedOption, this.searchTerm)
-                .then(function(res){ console.log(res)});
+                .then((res: angular.IHttpPromiseCallbackArg<any>) => { 
+                    console.log(res)
+                    this.results = res.data;
+                });
         }
     }
 

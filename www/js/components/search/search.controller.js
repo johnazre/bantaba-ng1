@@ -27,10 +27,12 @@ var bantaba_app;
             });
         };
         SearchController.prototype.searchFilter = function () {
-            console.log("select: ", this.selectedOption);
-            console.log("term: ", this.searchTerm);
+            var _this = this;
             this.eventsService.queryEvents(this.selectedOption, this.searchTerm)
-                .then(function (res) { console.log(res); });
+                .then(function (res) {
+                console.log(res);
+                _this.results = res.data;
+            });
         };
         return SearchController;
     }());
