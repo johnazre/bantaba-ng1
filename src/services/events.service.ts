@@ -23,6 +23,14 @@ namespace bantaba_app {
             return this.$http.get('http://localhost:3000/events/all/');
         }
 
+        queryEvents(option, term) {
+            if(option === 'Location'){
+                return this.$http.get(`http://localhost:3000/events/search?location=${term}`)
+            } else {
+                return this.$http.get(`http://localhost:3000/events/search?performer=${term}`)
+            }
+        }
+
         getSingleEvent(id: number) {
             return this.$http.get(`http://localhost:3000/events/${id}/`);
         }

@@ -2,26 +2,18 @@
   <ion-content>
     <div class="list">
       <label class="item item-input">
-        <input type="text" placeholder="Search for a performer or location">
+        <input type="text" placeholder="Search for a performer or location" ng-model="vm.searchTerm">
       </label>
       <label class="item item-input item-select">
         <div class="input-label">
           Location or Performer
         </div>
-        <select ng-options="filter for filter in vm.searchFilter" ng-model="vm.selectedOption" ng-change="searchFilterChange()">
-          <option>Location</option>
-          <option>Performer</option>
-        </select>
+        <select ng-options="filter for filter in vm.searchFilters" ng-model="vm.selectedOption"></select>
       </label>
-      <button class="button button-block button-positive">
-        Search
-      </button>
+      <button class="button button-block button-positive" ng-click="vm.searchFilter()">Search</button>
       <div class="item item-button-right" ng-repeat="result in vm.results">
         Call Ma
-        <button class="button button-positive">
-          <!--<i class="icon ion-ios-telephone"></i>-->
-          Follow
-        </button>
+        <button type="button" class="button button-positive">Follow</button>
       </div>
     </div>
   </ion-content>

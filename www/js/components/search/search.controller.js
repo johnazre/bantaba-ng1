@@ -26,8 +26,11 @@ var bantaba_app;
                 _this.performers = res.data;
             });
         };
-        SearchController.prototype.searchFilterChange = function () {
+        SearchController.prototype.searchFilter = function () {
             console.log("select: ", this.selectedOption);
+            console.log("term: ", this.searchTerm);
+            this.eventsService.queryEvents(this.selectedOption, this.searchTerm)
+                .then(function (res) { console.log(res); });
         };
         return SearchController;
     }());

@@ -8,6 +8,14 @@ var bantaba_app;
         EventsService.prototype.getAllEvents = function () {
             return this.$http.get('http://localhost:3000/events/all/');
         };
+        EventsService.prototype.queryEvents = function (option, term) {
+            if (option === 'Location') {
+                return this.$http.get("http://localhost:3000/events/search?location=" + term);
+            }
+            else {
+                return this.$http.get("http://localhost:3000/events/search?performer=" + term);
+            }
+        };
         EventsService.prototype.getSingleEvent = function (id) {
             return this.$http.get("http://localhost:3000/events/" + id + "/");
         };

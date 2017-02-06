@@ -8,6 +8,7 @@ namespace bantaba_app {
         performer: any;
         searchFilters: string[] = ['Location', 'Performer'];
         selectedOption: any;
+        searchTerm: string;
         
         static $inject: Array<string> = ['EventsService', 'PerformersService', '$http'];
         constructor(private eventsService: EventsService,
@@ -31,8 +32,11 @@ namespace bantaba_app {
                 });
         }
 
-        searchFilterChange() {
+        searchFilter() {
             console.log("select: ", this.selectedOption);
+            console.log("term: ", this.searchTerm);
+            this.eventsService.queryEvents(this.selectedOption, this.searchTerm)
+                .then(function(res){ console.log(res)});
         }
     }
 
