@@ -2,6 +2,7 @@ namespace bantaba_app {
     'use strict';
 
     export class SearchController {
+        cities: any[];
         event: any;
         events: Array<any> = [];
         performer: any;
@@ -10,11 +11,15 @@ namespace bantaba_app {
         searchFilters: string[] = ['Location', 'Performer'];
         searchTerm: string;
         selectedOption: any;
+        states: string[];
         
-        static $inject: Array<string> = ['EventsService', 'PerformersService', '$http'];
+        static $inject: Array<string> = ['EventsService', 'PerformersService', 'MiscService', '$http'];
         constructor(private eventsService: EventsService,
                     private performersService: PerformersService,
-                    private $http: angular.IHttpService) {
+                    public miscService: MiscService,
+                    private $http: angular.IHttpService){
+                        console.log(this.miscService)
+                        this.states = this.miscService.getStates();
         }
 
         getAllEvents() {
@@ -39,6 +44,13 @@ namespace bantaba_app {
                     console.log(res)
                     this.results = res.data;
                 });
+        }
+        getCities(state) {
+            this.$http.get(`http://api.sba.gov/geodata/city_links_for_state_of/${state}.json`)
+                .then((res: angular.IHttpPromiseCallbackArg<any>) => {
+                    console.log("cities res", res)
+                    res.data = this.cities;
+                })
         }
     }
 
