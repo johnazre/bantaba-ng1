@@ -14,11 +14,11 @@
         <select ng-options="state for state in vm.states" ng-model="vm.selectedState" ng-change=" vm.getCities(vm.selectedState)">
           <option value="" disabled>Select a State</option>
         </select>
-        <select ng-options="city.name for city in vm.cities" ng-model="vm.selectedCity" ng-change=" vm.getCities(vm.selectedCity)">
+        <select ng-options="city.name for city in vm.cities" ng-model="vm.selectedCity" ng-change=" vm.searchByLocation(vm.selectedCity)">
           <option value="" disabled>Select a City</option>
         </select>
       </label>
-      <button class="button button-block button-positive" ng-click="vm.searchFilter()">Search</button>
+      <button ng-if="vm.selectedOption === 'Performer'" class="button button-block button-positive" ng-click="vm.searchByPerformer(vm.searchTerm)">Search</button>
       <div class="item item-button-right" ng-repeat="result in vm.results">
         {{result.name}} - {{result.start_date | date}}
         <button type="button" class="button button-positive">Follow</button>

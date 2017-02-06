@@ -10,7 +10,6 @@ var bantaba_app;
             this.events = [];
             this.performers = [];
             this.searchFilters = ['Location', 'Performer'];
-            console.log(this.miscService);
             this.states = this.miscService.getStates();
         }
         SearchController.prototype.getAllEvents = function () {
@@ -29,20 +28,35 @@ var bantaba_app;
                 _this.performers = res.data;
             });
         };
-        SearchController.prototype.searchFilter = function () {
-            var _this = this;
-            this.eventsService.queryEvents(this.selectedOption, this.searchTerm)
-                .then(function (res) {
-                console.log(res);
-                _this.results = res.data;
-            });
-        };
+        // searchFilter() {
+        //     this.eventsService.queryEvents(this.selectedOption, this.searchTerm)
+        //         .then((res: angular.IHttpPromiseCallbackArg<any>) => { 
+        //             console.log(res)
+        //             this.results = res.data;
+        //         });
+        // }
         SearchController.prototype.getCities = function (state) {
             var _this = this;
             this.$http.get("http://api.sba.gov/geodata/city_links_for_state_of/" + state + ".json")
                 .then(function (res) {
-                console.log("cities res", res);
-                res.data = _this.cities;
+                console.log("cities res", res.data);
+                _this.cities = res.data.sort(function (a, b) { return a.name - b.name; });
+            });
+        };
+        SearchController.prototype.searchByLocation = function () {
+            var _this = this;
+            this.$http.get("http://localhost:3000/events/search?location=" + this.selectedState)
+                .then(function (res) {
+                console.log("query res", res);
+                _this.results = res.data;
+            });
+        };
+        SearchController.prototype.searchByPerformer = function () {
+            var _this = this;
+            this.$http.get("http://localhost:3000/events/search?performer=" + this.searchTerm)
+                .then(function (res) {
+                console.log("query res", res);
+                _this.results = res.data;
             });
         };
         return SearchController;
