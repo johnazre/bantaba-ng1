@@ -1,5 +1,52 @@
 <ion-view view-title="Single Event">
   <ion-content>
-      <h1>Single Event</h1>
+    <!--<h2>{{vm.event.name}}</h2>-->
+    <div class="row">
+      <div class="col">
+        <div class="list card">
+          <div class="item item-image">
+            <img src="http://facweb.cs.depaul.edu/sgrais/images/StudentGallery/flyer/EdricLapniramai_Concert_Flyer.jpg">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <ul class="list">
+          <div class="row single-event-info-row">
+            <div class="col">
+              <li class="item">
+                Time: {{vm.event.start_date | date}}
+              </li>
+            </div>
+            <div class="col">
+              <li class="item">
+                {{vm.event.start_date | date}}
+              </li>
+            </div>
+          </div>
+          <div class="row single-event-info-row">
+            <div class="col">
+              <li class="item">
+                Location: 
+              </li>
+            </div>
+            <div class="col">
+              <li class="item">
+                {{vm.event.location_city}}, {{vm.event.location_state}}
+              </li>
+            </div>
+          </div>
+          <div class="row single-event-info-row">
+            <div class="col">
+              <li class="item">
+                Description: <br>
+                {{vm.event.description}}
+              </li>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

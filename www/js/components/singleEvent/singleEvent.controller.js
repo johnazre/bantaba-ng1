@@ -3,10 +3,14 @@ var bantaba_app;
     'use strict';
     var SingleEventController = (function () {
         function SingleEventController(eventsService, $stateParams) {
+            var _this = this;
             this.eventsService = eventsService;
             this.$stateParams = $stateParams;
-            this.events = [];
-            eventsService.getSingleEvent($stateParams.id);
+            eventsService.getSingleEvent($stateParams.id)
+                .then(function (res) {
+                console.log('single event res', res);
+                _this.event = res.data[0];
+            });
         }
         return SingleEventController;
     }());
