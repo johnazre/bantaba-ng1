@@ -74,8 +74,8 @@ angular.module('bantaba', ['ionic',
         .state('tab.myevents', {
         url: '/my-events',
         views: {
-            'tab-search': {
-                templateUrl: 'templates/tab-search.html',
+            'tab-myevents': {
+                templateUrl: 'templates/tab-myevents.html',
                 controller: 'SearchController',
                 controllerAs: 'vm'
             }
@@ -84,8 +84,8 @@ angular.module('bantaba', ['ionic',
         .state('tab.manage', {
         url: '/manage',
         views: {
-            'tab-search': {
-                templateUrl: 'templates/tab-search.html',
+            'tab-manage': {
+                templateUrl: 'templates/tab-manage.html',
                 controller: 'SearchController',
                 controllerAs: 'vm'
             }
@@ -98,6 +98,26 @@ angular.module('bantaba', ['ionic',
         resolve: {
             login: function ($rootScope) {
                 return 'yes';
+            }
+        }
+    })
+        .state('tab.event', {
+        url: '/event/:id',
+        views: {
+            'event': {
+                templateUrl: 'templates/event.html',
+                controller: 'SingleEventController',
+                controllerAs: 'vm'
+            }
+        }
+    })
+        .state('tab.performer', {
+        url: '/performer/:id',
+        views: {
+            'performer': {
+                templateUrl: 'templates/tab-performer.html',
+                controller: 'SearchController',
+                controllerAs: 'vm'
             }
         }
     });
@@ -113,6 +133,13 @@ angular.module('bantaba', ['ionic',
                     scope: 'openid',
                     device: 'Mobile device'
                 }
+            },
+            theme: {
+                logo: 'img/logo.png',
+                primaryColor: '#606E10'
+            },
+            languageDictionary: {
+                title: ''
             }
         }
     });

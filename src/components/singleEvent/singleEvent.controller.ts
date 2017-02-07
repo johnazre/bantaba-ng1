@@ -4,8 +4,11 @@ namespace bantaba_app {
     export class SingleEventController {
         events: Array<any> = [];
         event: any;
-        static $inject: Array<string> = ['EventsService'];
-        constructor(public eventsService: EventsService) {}
+        static $inject: Array<string> = ['EventsService', '$stateParams'];
+        constructor(public eventsService: EventsService, 
+                    public $stateParams: angular.ui.IStateParamsService) {
+                        eventsService.getSingleEvent($stateParams.id)
+        }
 
     }
 

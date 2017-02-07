@@ -1,9 +1,41 @@
 /* Empty. Add your own CSS if you like */
 
+:root {
+  --main-bg-color: #E6DFA1;
+}
+
+.auth0-lock.auth0-lock .auth0-lock-header-logo.centered {
+    margin-top: 12px !important;
+}
+
+.auth0-lock.auth0-lock .auth0-lock-header-logo {
+    height: 80px !important;
+}
+
+ion-header-bar {
+    background-color: #453420 !important;
+}
+
+ion-view {
+    background-color: var(--main-bg-color) !important;
+}
+
+.bar.bar-stable .title {
+    color: var(--main-bg-color);
+}
+
 .dash-heading {
     text-align: center;
 }
 
 .item.item-avatar.dash-event-heading {
-    background-color: #eaebed;
+    background-color: #606E10;
+}
+
+.item.item-avatar.dash-event-heading > h2 {
+    color: var(--main-bg-color);
+}
+
+.item.item-avatar.dash-event-heading > p {
+    color: var(--main-bg-color);
 }

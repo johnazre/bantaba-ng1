@@ -7,20 +7,40 @@
         </div>
         <select ng-options="filter for filter in vm.searchFilters" ng-model="vm.selectedOption"></select>
       </label>
-      <label ng-if="vm.selectedOption === 'Performer'" class="item item-input">
-        <input type="text" placeholder="Search for a performer" ng-model="vm.searchTerm">
-      </label>
-      <label ng-if="vm.selectedOption === 'Location'" class="item item-input">
+      
+      <!--LOCATION SEARCH FORM-->
+      <label ng-if="vm.selectedOption === 'Location'" class="item item-input item-select">
+        <div class="input-label">
+          State
+        </div>
         <select ng-options="state for state in vm.states" ng-model="vm.selectedState" ng-change=" vm.getCities(vm.selectedState)">
           <option value="" disabled>Select a State</option>
         </select>
+      </label>
+      <label ng-if="vm.selectedOption === 'Location'" class="item item-input item-select">
+        <div class="input-label">
+          City
+        </div>
         <select ng-options="city.name for city in vm.cities" ng-model="vm.selectedCity" ng-change=" vm.searchByLocation(vm.selectedCity)">
           <option value="" disabled>Select a City</option>
         </select>
       </label>
+
+      <!--PERFORMER SEARCH FORM-->
+      <label ng-if="vm.selectedOption === 'Performer'" class="item item-input">
+        <input type="text" placeholder="Search for a performer" ng-model="vm.searchTerm">
+      </label>
       <button ng-if="vm.selectedOption === 'Performer'" class="button button-block button-positive" ng-click="vm.searchByPerformer(vm.searchTerm)">Search</button>
-      <div class="item item-button-right" ng-repeat="result in vm.results">
+
+      <!--LOCATION RESULT LIST-->
+      <div class="item item-button-right" ng-repeat="result in vm.locationResults"><a ui-sref="tab.event({ id: result.id})">click here</a>
         {{result.name}} - {{result.start_date | date}}
+        <button type="button" class="button button-positive">Follow</button>
+      </div>
+
+      <!--PERFORMER RESULT LIST-->
+      <div class="item item-button-right" ng-repeat="result in vm.performerResults"><a ui-sref="tab.performer({ id: result.id})">click here</a>
+        {{result.stage_name}}
         <button type="button" class="button button-positive">Follow</button>
       </div>
     </div>
