@@ -15,31 +15,31 @@
         <ul class="list">
           <div class="row single-event-info-row">
             <div class="col event-page-col">
-              <li class="item">
+              <li class="item no-middle-border">
                 Time:
               </li>
             </div>
             <div class="col event-page-col">
-              <li class="item">
-                {{vm.event.start_date | date}}
+              <li class="item no-middle-border">
+                {{vm.event.start_date | date:'MM/dd/yyyy @ h:mma'}}}
               </li>
             </div>
           </div>
           <div class="row single-event-info-row">
             <div class="col event-page-col">
-              <li class="item">
+              <li class="item no-middle-border">
                 Location: 
               </li>
             </div>
             <div class="col event-page-col">
-              <li class="item">
+              <li class="item no-middle-border">
                 {{vm.event.location_city}}, {{vm.event.location_state}}
               </li>
             </div>
           </div>
           <div class="row single-event-info-row">
             <div class="col event-page-col col-100">
-              <li class="item">
+              <li class="item no-middle-border">
                 Description: <br>
                 {{vm.event.description}}
               </li>

@@ -6,24 +6,24 @@ navigation history that also transitions its views in and out.
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
   <!-- Dashboard Tab -->
-  <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/dash">
+  <ion-tab title="Dashboard" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/dash">
     <ion-nav-view name="tab-dash"></ion-nav-view>
   </ion-tab>
 
   <!-- Search Tab -->
-  <ion-tab title="Search" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-search" href="#/tab/search">
+  <ion-tab title="Search" icon-off="ion-search" icon-on="ion-search" href="#/tab/search">
     <ion-nav-view name="tab-search"></ion-nav-view>
   </ion-tab>
 
   <!-- Manage Tab -->
-  <ion-tab title="Manage" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-search" href="#/tab/manage">
+  <!--<ion-tab title="Manage" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-search" href="#/tab/manage">
     <ion-nav-view name="tab-manage"></ion-nav-view>
-  </ion-tab>
+  </ion-tab>-->
 
   <!-- MyEvents Tab -->
-  <ion-tab ng-if="isAuthenticated" title="My Events" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-search" href="#/tab/my-events">
+  <!--<ion-tab ng-if="isAuthenticated" title="My Events" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-search" href="#/tab/my-events">
     <ion-nav-view name="tab-my-events"></ion-nav-view>
-  </ion-tab>
+  </ion-tab>-->
 
   <!-- Account Tab -->
   <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/account">
