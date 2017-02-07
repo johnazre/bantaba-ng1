@@ -46,6 +46,8 @@ ion-view {
     padding: 0;
 }
 
+/*performer page css*/
+
 .performer-page-heading {
     background-color: #f9f9f9;
     margin: 20px 15px 0 15px;
@@ -55,4 +57,13 @@ ion-view {
 
 .performer-page-heading > h2{
     margin-bottom: 0px;
+}
+
+/*account page css*/
+
+.account-profile-picture {
+    border-radius: 50%;
+    margin-top: 20px;
+    width: 90%;
+    margin-left: 5%;
 }
