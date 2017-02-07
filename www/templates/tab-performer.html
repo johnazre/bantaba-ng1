@@ -1,5 +1,54 @@
 <ion-view view-title="Single Performer">
   <ion-content>
-      <h1>Single Performer</h1>
+    <div class="performer-page-heading">
+      <h2 class="">{{vm.performer.stage_name}}</h2>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="list card">
+          <div class="item item-image">
+            <img src="https://cdn.pastemagazine.com/www/system/images/photo_albums/the-50-best-band-logos/large/photo_11666_0-9.jpg?1384968217">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col event-page-col">
+        <ul class="list">
+          <div class="row single-event-info-row">
+            <div class="col event-page-col">
+              <li class="item">
+                Name:
+              </li>
+            </div>
+            <div class="col event-page-col">
+              <li class="item">
+                {{vm.performer.stage_name}}
+              </li>
+            </div>
+          </div>
+          <div class="row single-event-info-row">
+            <div class="col event-page-col">
+              <li class="item">
+                Hometown: 
+              </li>
+            </div>
+            <div class="col event-page-col">
+              <li class="item">
+                {{vm.performer.hometown}}
+              </li>
+            </div>
+          </div>
+          <div class="row single-event-info-row">
+            <div class="col event-page-col col-100">
+              <li class="item">
+                Overview: <br>
+                {{vm.performer.overview}}
+              </li>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

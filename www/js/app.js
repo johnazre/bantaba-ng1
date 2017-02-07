@@ -116,7 +116,7 @@ angular.module('bantaba', ['ionic',
         views: {
             'performer': {
                 templateUrl: 'templates/tab-performer.html',
-                controller: 'SearchController',
+                controller: 'SinglePerformerController',
                 controllerAs: 'vm'
             }
         }
@@ -132,7 +132,8 @@ angular.module('bantaba', ['ionic',
                 params: {
                     scope: 'openid',
                     device: 'Mobile device'
-                }
+                },
+                sso: false
             },
             theme: {
                 logo: 'img/logo.png',

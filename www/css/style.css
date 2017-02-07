@@ -39,3 +39,20 @@ ion-view {
 .item.item-avatar.dash-event-heading > p {
     color: var(--main-bg-color);
 }
+
+/*event page css*/
+
+.event-page-col {
+    padding: 0;
+}
+
+.performer-page-heading {
+    background-color: #f9f9f9;
+    margin: 20px 15px 0 15px;
+    padding: 5px;
+    text-align: center;
+}
+
+.performer-page-heading > h2{
+    margin-bottom: 0px;
+}
